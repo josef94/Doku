@@ -1,0 +1,115 @@
+% ---------- Präambel ----------
+
+% Schriftgrösse 11, A4 Format, für Artikel, Essays
+\documentclass[11pt,a4paper,]{scrartcl}
+
+% Seitenränder einstellen
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+
+% Direkte Angabe von Umlauten im Dokument
+\usepackage[utf8]{inputenc}
+
+% Deutsche Sprachanpassungen
+\usepackage[ngerman]{babel}
+
+% Schriftart im gesamten Dokument einstellen
+%\usepackage{kpfonts}
+\renewcommand*{\familydefault}{\sfdefault}
+
+% Silbentrennung bei Sonderzeichen
+\usepackage[T1]{fontenc}
+
+% Mathematische Formeln aktivieren
+\usepackage{amsmath}
+
+% Schriftarten in Mathematischen Formeln
+\usepackage{amsfonts}
+
+% Bildpositionen erzwingen
+\usepackage{float}
+
+% Mathematische Symbole aktivieren
+\usepackage{amssymb}
+
+% Textboxen aktivieren
+\usepackage{framed}
+
+%PDF einfügen
+\usepackage{pdfpages}
+
+% Zitationsstil
+\usepackage{cite}
+\bibliographystyle{ieeetr}
+\usepackage{url}
+
+% Grafiken einbinden
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+% Tabellen rotieren
+\usepackage{rotating}
+\usepackage{adjustbox}
+
+% Autor setzen
+\author{\TheAuthor}
+
+% Titel setzen
+\title{\TheTitle}
+
+% Inhaltsverzeichnis Stil
+\usepackage{tocstyle}
+\newtocstyle[KOMAlike][leaders]{alldotted}{}
+\usetocstyle{alldotted}
+\setcounter{tocdepth}{2} 
+\setcounter{secnumdepth}{3} 
+ 
+
+% -------- Variabeln --------
+% Autor
+\newcommand{\TheAuthor}{Josef Böckle \& Daniel Lüchinger}
+\newcommand{\TheAuthorShort}{Böckle, Lüchinger}
+% Titel
+\newcommand{\TheTitle}{Fast and Curious\\ \begin{Large}
+Dokumentation
+\end{Large}}
+% Projektname
+\newcommand{\projektName}{Fast and Curious}
+% Auftraggeber
+\newcommand{\auftraggeber}{Adlos AG, Thomas Vogt}
+% Referent
+\newcommand{\RefName}{Klaus Frick}
+ % Koreferent
+\newcommand{\coRefName}{Tindaro Pittorino}
+
+% ---------- Kopfzeile & Fusszeile ----------
+% Kopf und Fusszeile aktivieren
+\usepackage{fancyhdr}
+% Keine vorgefertigte Kopf/Fusszeilen verwenden
+\pagestyle{fancy}
+% Eigentliche Kopfzeilen Einstellung
+\lhead{Fast and Curious, Adlos AG}
+\chead{}
+\rhead{\today}
+\lfoot{\TheAuthorShort}
+\cfoot{\jobname .pdf}
+\rfoot{Seite \thepage}
+% Linien
+\renewcommand{\footrulewidth}{0.4pt} %untere Trennlinie
+\renewcommand{\headrulewidth}{0.4pt} %untere Trennlinie
+
+% Aufzählungsart
+\usepackage{enumitem}
+\newlist{citemize}{itemize}{4}
+\setlist[citemize]{label=\textbullet,nosep,topsep=-\parskip}
+
+% ---------- Eigentliches Dokument ----------
+\begin{document}
+\input{Deckblatt}
+  % Einrücken verhindern
+\setcounter{page}{1} 
+\setlength{\parindent}{0em}
+\setlength\tabcolsep{0pt}
+\tableofcontents
+\newpage 
+\input{Verzeichnisse}
+\end{document}
