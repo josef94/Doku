@@ -1,0 +1,48 @@
+\subsection{Github}
+Zur Verwaltung der Software wurde Github verwendet. Damit konnten Anpassungen oder Änderungen des Quellcodes einfach von der Komandozeile, im Webbrowser oder mithilfe eines Programms unter Windows hochgeladen und anschliessend auf anderen Geräten verbreitet werden. Ebenfalls war es jederzeit möglich die Software auf vorherige Versionen des Quellcodes zurückzusetzen, wenn dies notwendig war. Durch "'Sourcetree"', einem Programm unter Windows, konnten zudem sämtliche vorgänige Commits rasch und einfach nachgelesen und nachvollzogen werden, da dort zu jedem Commit die spezifischen Änderungen markiert wurden. Ein weiterer Vorteil von Github war es, dass der Quellcode von überall aus erreichbar war, und somit keine verschiedenen Versionen von Codes vorhanden waren. Da der Code jederzeit und überall erreichbar war, konnte dies im späteren Verlauf der Bachelorarbeit, als die Geräte bereits an den Strassenlaternen angebracht waren, verwendet werden um den Quellcode stetig zu verbessern. Neue Versionen der Software konnten anschliessend per WLAN heruntergeladen und installiert werden, wobei die Geräte nicht entfernt und neu ausgerichtet werden mussten. So konnte der Quellcode jederzeit getestet, angepasst und innerhalb weniger Minuten auf den Geräten aktualisiert werden. Das Update konnte mittels eines Scripts duchgeführt werden, welches für sämtliche Programme unter Linux zuerst eine Überprüfung durchgeführt hatte, ob das gewünschte Programm bereits installiert war und neue Software nur installierte, falls diese nicht auf dem Board vorhanden waren. So konnte die Installationszeit für Updates sehr kurz gehalten werden.
+
+\subsubsection{Ordnerstruktur}
+Sämtlicher Quellcode, welcher auf dem Gerät installiert wurde, ist unter nachfolgendem Link verfügbar. In der untenstehenden Tabelle sind die wichtigsten Dokumente und Ordner des Quellcodes aufgelistet und deren Verwendungszweck anschliessend kurz erklärt:\\
+
+\url{https://github.com/josef94/BA}\\
+
+\setlength\tabcolsep{5pt}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{0.2 cm}|p{3.5 cm} p{3.5 cm} p{3.5 cm}|}
+\hline
+\multicolumn{4}{|l|}{\textbf{MakeVideo}} \\ \hline
+ & makeVideo.sh &  &  \\ \hline
+\multicolumn{4}{|l|}{\textbf{CheckMotion}} \\ \hline
+ & CheckMotion.cpp &  &  \\ \hline
+ \multicolumn{4}{|l|}{\textbf{VehicleCount}} \\ \hline
+ & \begin{tabular}[c]{@{}l@{}}Blob.cpp\\ Blob.h\end{tabular} & \begin{tabular}[c]{@{}l@{}}FileHandler.cpp\\ FileHandler.h\end{tabular} & VehicleCount.cpp \\ \hline
+\multicolumn{4}{|l|}{\textbf{Handler}} \\ \hline
+ & handler.sh & settings.sh & temperature.sh \\ \hline
+\multicolumn{4}{|l|}{\textbf{WLAN}} \\ \hline
+ & WLANSettings.sh &  &  \\ \hline
+\multicolumn{4}{|l|}{\textbf{Temp}} \\ \hline
+ & \begin{tabular}[c]{@{}l@{}}deleteFrames.sh\\ generateCrops.sh\\ generateFeatureVec.sh\end{tabular} & \begin{tabular}[c]{@{}l@{}}index.php\\ rc.local\\ startStream.sh\end{tabular} & \begin{tabular}[c]{@{}l@{}}startVideo.sh\\ temperature.php\end{tabular} \\ \hline
+\multicolumn{4}{|l|}{} \\ \hline
+ & initialization.sh &  &  \\ \hline
+\end{tabular}
+\caption{Ordnerstruktur Github.com/josef94/BA}
+\label{tOrdnerstruktur}
+\end{table}
+
+\setlength\tabcolsep{0pt}
+
+Das Skript "'makeVideo.sh"' dient dazu, die Videoaufnahme zu starten. Nach Aufruf des Scripts, wird ein Zeitstempel mit aktuellem Datum und Uhrzeit herausgelesen und daraufhin ein 15-Minütiges Video gestartet, welches im Videos-Ordner gespeichert wird.\\
+
+Die C++ Datei CheckMotion ist für die Vorverarbeitung zuständig. Nachdem die Datei kompiliert wurde, kann diese ausgeführt werden. Dieses Programm benötigt jedoch den Namen des Videos und den Pfad für die generierten Frames als Argument.\\
+
+Sämtliche Dateien im VehicleCount werden benötigt, um die Nachbearbeitung durchzuführen. Auch diese Dateien müssen vorgängig kompiliert werden, damit sie ausführbar sind. Dabei ist VehicleCount die Hauptklasse, Filehandler kümmert sich um das Datei-Handling und Blob um die eigentliche "'Blob-Detection"'. Als Argument benötigt die Hauptklasse den korrekten Pfad des Ordners.\\
+
+Die drei Dateien im Ordner "'Handler"' gehören zur Steuerung und Überwachung. Dabei beinhaltet die Datei "'handler.sh"' die Hauptschleife. "'settings.sh"' wird benötigt, um den Kamera Stream zu starten, damit das Gerät ausgerichtet werden kann und "'temperature.sh"' liest alle 60 Sekunden die Kerntemperatur aus, welche danach in eine Datei geschrieben wird.\\
+
+Die Skript Datei "'WLANSettings.sh"' wird benötigt, um die gewünschten WIFI Einstellungen durchzuführen. Dort kann die SSID und das Passwort des Netzwerks eingetragen werden, auf welches sich das Gerät verbindet.\\
+
+Alle Dokumente, welche sich im Ordner "'Temp"' befinden, müssen nach herunterladen vom Git Repository noch in den korrekten Ordner verschoben werden. Die PHP Dateien beinhalten die Webseite von Fast and Curious. Die SH Skripte werden für die Eingaben durch den Benutzer auf der Webseite benötigt. Die letzte Datei, "'rc.local"' ist notwendig, um diverse Programme bereits beim Autostart zu aktivieren, damit kein manuelles Anmelden auf dem NanoPi und Starten der Skripte nötig ist.\\
+
+Damit eine Neuinstallation oder ein Update ohne grosse Probleme durchgeführt werden kann ist die Datei "'initialization.sh"' vorhanden. Nachdem das Git Repository heruntergeladen wurde, kann dieses Skript ausgeführt werden. Sobald das Skript gestartet wurde, wird anfänglich nach Upgrades und Updates vom sämtlichen Programmen auf dem Board gesucht. Danach werden die notwendigen Ordner erstellt, welche für den Betrieb des Geräts benötigt werden. Im Anschluss werden OpenCV, Avconv, Apache2 und Mjpg-Streamer installiert, falls diese sich noch nicht schon auf dem Gerät befinden. Anschliessend werden alle Dateien im Temp Ordner in die richtigen Ordner auf dem Gerät verschoben und dieser danach gelöscht. Die erfolgreiche Löschung des Ordners dient als Indikator, ob alle Dateien korrekt verschoben wurden. Zu guter Letzt werden die C++ Dateien kompiliert und sämtliche Skripte ausführbar gemacht. Erst nachdem all diese Aufgaben abgeschlossen sind, erscheint eine finale Meldung, welche den Benutzer informiert, dass alles erfolgreich abgelaufen und das Gerät nach einem Neustart verwendet werden kann.

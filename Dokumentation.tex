@@ -34,6 +34,13 @@
 % Textboxen aktivieren
 \usepackage{framed}
 
+% Glossar
+\usepackage[acronym, automake]{glossaries}
+\makeglossaries
+% Remove Title from Glossaries
+\renewcommand{\glossarysection}[2][]{}
+\setlength{\glsdescwidth}{0.8\textwidth}
+
 %PDF einfügen
 \usepackage{pdfpages}
 
@@ -45,10 +52,12 @@
 % Grafiken einbinden
 \usepackage{graphicx}
 \usepackage{subfigure}
+\newcommand{\fref}[1]{\figurename\ \ref{#1}}
 
 % Tabellen rotieren
 \usepackage{rotating}
 \usepackage{adjustbox}
+\newcommand{\tref}[1]{\tablename\ \ref{#1}}
 
 % Autor setzen
 \author{\TheAuthor}
@@ -60,8 +69,6 @@
 \usepackage{tocstyle}
 \newtocstyle[KOMAlike][leaders]{alldotted}{}
 \usetocstyle{alldotted}
-\setcounter{tocdepth}{2} 
-\setcounter{secnumdepth}{3} 
  
 
 % -------- Variabeln --------
@@ -105,11 +112,23 @@ Dokumentation
 % ---------- Eigentliches Dokument ----------
 \begin{document}
 \input{Deckblatt}
-  % Einrücken verhindern
 \setcounter{page}{1} 
 \setlength{\parindent}{0em}
 \setlength\tabcolsep{0pt}
 \tableofcontents
 \newpage 
+\input{Danksagung}
+\input{Abstract}
+\input{Einleitung}
+\input{FastAndCurious}
+\input{Hardware}
+\input{Software}
+\input{Schwierigkeiten}
+\input{Bedienungsanleitung}
+\input{Testversuche}
+\input{Resultate}
+\input{Ausblick}
 \input{Verzeichnisse}
+\input{EidestattlicheErklärung}
+\input{Anhang}
 \end{document}
