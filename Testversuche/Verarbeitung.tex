@@ -1,8 +1,8 @@
 \subsection{Verarbeitung}
-Nachfolgend werden die Methoden beschrieben, welche für die Verarbeitung der generierten Bilder verwendet werden könnten. Je nach Methode könnten diese Funktionen direkt auf den NanoPi implementiert werden. Somit wäre es möglich die Nachverarbeitung zu erweitern und bei sämtlichen Verkehrsteilnehmern diese Funktionen ebenfalls durchzuführen und auszuwerten. Das Resultat daraus wäre ein besserer Feature Vektor, was die Verkehrsverfolgung erleichtern würde.
+Nachfolgend werden die Methoden beschrieben, welche für die Verarbeitung der generierten Bilder verwendet werden könnten. Je nach Methode könnten diese Funktionen direkt auf den NanoPi implementiert werden. Somit wäre es möglich die Nachverarbeitung zu erweitern und bei sämtlichen Verkehrsteilnehmern diese Funktionen ebenfalls durchzuführen und auszuwerten. Das Resultat daraus wäre ein besserer Feature Vektor, was die Verkehrsverfolgung erleichtern würde. Wichtig dabei ist es jedoch zu beachten, dass die Verarbeitungszeit auf dem NanoPi nicht allzu drastisch erhöht wird, da ansonsten die Prozessierung der Verkehrsteilnehmer zu viel Zeit in Anspruch nehmen würde.
 
 \subsubsection{GrabCut}
-Bei "'GrabCut"' handelt es sich um einen Algorithmus, welcher bereits in OpenCV implementiert ist. Optimal verwendet kann dieser genutzt werden, um automatisch den Hintergrund eines Bildes wegzuschneiden. Bei diesem Algorithmus kann ein Rahmen in das Bild gelegt werden, welcher definiert, was als Hintergrund gewertet werden soll. OpenCV schneidet danach den Rahmen und sämtliche darin enthaltene Ähnlichkeiten aus, bis eine zu grosse Veränderung zwischen den umliegenden Pixeln gefunden wurde. Nachfolgende Abbildung (\fref{bGrabCut}) zeigt ein Beispiel von GrabCut. 
+Bei "'GrabCut"' handelt es sich um einen Algorithmus, welcher den Hintergrund eines Bildes entfernt und diesen durch eine beliebige Farbe ersetzt. Somit kann danach lediglich der Vordergrund des Bildes weiterverwendet werden. Dieser Algorithmus ist bereits in OpenCV implementiert und hatte das Ziel, mit möglichst wenig Eingabeparameter durch den Benutzer eine Extraktion des Vordergrunds zu erreichen. Damit "'GrabCut"' korrekt funktioniert, benötigt es einer Deklaration, was als Hintergrund gewertet werden soll. Dies geschieht, indem ein Rahmen in das Bild gelegt wird. Alles was ausserhalb dieses Rahmens ist, zählt zum Hintergrund. OpenCV schneidet im Anschluss den Rahmen und sämtliche darin enthaltene Ähnlichkeiten innerhalb des Rahmens aus, bis eine zu grosse Veränderung zwischen den umliegenden Pixeln gefunden wurde. Nachfolgende Abbildung (\fref{bGrabCut}) zeigt ein Beispiel von GrabCut.
 
 \begin{figure}[H]
   \centering
@@ -15,14 +15,23 @@ Bei "'GrabCut"' handelt es sich um einen Algorithmus, welcher bereits in OpenCV 
 Auf dem linken Bild sind das Originalbild und der definierte Rahmen zu sehen, auf dem rechte Bild das Ergebnis dazu. Dem Ergebnis wurde ein grauer Hintergrund hinzugefügt, jedoch kann diese Farbe frei gewählt werden. Je nach Bild, welches verwendet wird, kann GrabCut schlechte bis hervorragende Resultate liefern. Dabei kommt es vor allem darauf an, wie starke Farbveränderungen im Hintergrund vorhanden sind. Bei diesem Algorithmus handelt es sich um eine komplexe Methode, welche selbst auf dem Computer einige Sekunden an Verarbeitungszeit benötigt. \cite{GrabCut}
 
 \subsubsection{Schattenentfernung}
-Als die ersten Testaufnahmen durchgeführt wurden, musste festgestellt werden, dass Schatten zu einem grossen Problem führen konnte. Dies trat vor allem dann auf, wenn die Sonne den Schatten des Verkehrsteilnehmers in richtung Kamera projezierte. Dadurch wurde der Bildausschnitt des Verkehrsteilnehmers grösser als er tatsächlich war, was weitere Auswertungen verfälschte. Aus diesem Grund wurde nach Möglichkeiten gesucht, um diesen Schatten zu entfernen, weshalb schlussendlich eine Funktion dafür geschrieben wurde.
-Falls ein Schatten vorhanden war, konnte dies am Differenzbild erkannt werden. Dort traten jeweils, waagrecht betrachtet, zwei helle Streifen und dazwischen ein dunkler Abschnitt auf. Auffällig daran ist, dass die Breite der hellen Steifen fast gleich gross waren, was auf die Geschwindigkeit des Fahrzeugs zurückzuführen ist. Der helle Streifen entstand, wenn nur auf einem der beiden Bilder, welche für das Differenzbild zuständig waren, ein Schatten vorhanden war. Der dunkle Abschnitt zwischen den hellen Stellen entstand, wenn auf beiden Eingangsbildern bereits ein Schatten vorlag. Nachfolgende Abbildung (\fref{bBlurRemoveShadow}) zeigt die geschilderte Situation eines Differezbildes mit Schatten.
+Als die ersten Testaufnahmen durchgeführt wurden, musste festgestellt werden, dass Schatten zu einem grossen Problem führen konnte. Dies trat vor allem dann auf, wenn die Sonne den Schatten des Verkehrsteilnehmers in Richtung Kamera projizierte. Dadurch wurde der Bildausschnitt des Verkehrsteilnehmers grösser als er tatsächlich war, was weitere Auswertungen verfälschte. Aus diesem Grund wurde nach Möglichkeiten gesucht, um diesen Schatten zu entfernen, weshalb schlussendlich eine Funktion dafür geschrieben wurde.
+Falls ein Schatten vorhanden war, konnte dies am Differenzbild erkannt werden. Dort traten jeweils, waagrecht betrachtet, zwei helle Streifen und dazwischen ein dunkler Abschnitt auf. Auffällig daran ist, dass die Breite der hellen Steifen fast gleich gross waren, was auf die Geschwindigkeit des Fahrzeugs zurückzuführen ist. Der helle Streifen entstand, wenn nur auf einem der beiden Bilder, welche für das Differenzbild genutzt wurden, ein Schatten vorhanden war. Der dunkle Abschnitt zwischen den hellen Stellen entstand, wenn auf beiden Eingangsbildern bereits ein Schatten vorlag. Nachfolgende Abbildung (\fref{bBlurRemoveShadow}) zeigt die geschilderte Situation eines Differenzbildes mit Schatten.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=0.3\textheight]{Testversuche/BlurRemoveShadow.jpg} 
+  \includegraphics[width=0.7\textwidth]{Testversuche/BlurRemoveShadow.jpg} 
   \caption{Differenzbild zur Demonstration des Schattens}
   \label{bBlurRemoveShadow}
 \end{figure} 
 
-Beim Algorithmus der Funktion wird jeweils 
+Beim Algorithmus der Funktion wird jeweils eine horizontale Linie betrachtet und dabei die Anzahl an hellen Pixeln addiert. Dies wird für beide hellen Teile durchgeführt und schlussendlich deren Anzahl verglichen. Falls die Unterschiede der beiden Zähler weniger als drei Pixel verschieden sind, wird eine Variable um eins erhöht und dasselbe auf der nächsten Linie durchgeführt. Falls der Unterschied beider Zähler grösser als drei Pixel ist, wird die besagte Variable wieder auf null gesetzt. Sobald die Variable 20 erreicht, bedeutet dies, dass 20 Linien am Stück gefunden wurden, an denen die hellen Teile fast gleich gross waren. Dies zeigt, dass es sich hier um den Schatten und nicht mehr um den Verkehrsteilnehmer handeln muss. Deshalb kann ab diesem Bereich der untere Teil des Bildes abgeschnitten werden. In der untenstehenden Abbildung (\fref{bRemoveShadow}) wurde der Algorithmus auf das obere Bild ({\fref{bBlurRemoveShadow}) angewandt.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{Testversuche/RemoveShadow.jpg} 
+  \caption{Differenzbild mit entferntem Schatten}
+  \label{bRemoveShadow}
+\end{figure}
+
+Die Abmasse des neuen Differenzbildes können nun auf den normalen Bildausschnitt des Verkehrsteilnehmers übertragen werden, damit dieser ohne Schatten weiterverarbeitet werden kann.
