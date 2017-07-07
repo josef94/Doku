@@ -65,3 +65,5 @@ Thumbs.db
 *.out
 *.synctex.gz
 *.glsdefs
+*.xml
+*.bcf
