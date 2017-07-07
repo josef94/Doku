@@ -14,6 +14,19 @@ Bei "'GrabCut"' handelt es sich um einen Algorithmus, welcher den Hintergrund ei
 
 Auf dem linken Bild sind das Originalbild und der definierte Rahmen zu sehen, auf dem rechte Bild das Ergebnis dazu. Dem Ergebnis wurde ein grauer Hintergrund hinzugefügt, jedoch kann diese Farbe frei gewählt werden. Je nach Bild, welches verwendet wird, kann GrabCut schlechte bis hervorragende Resultate liefern. Dabei kommt es vor allem darauf an, wie starke Farbveränderungen im Hintergrund vorhanden sind. Bei diesem Algorithmus handelt es sich um eine komplexe Methode, welche selbst auf dem Computer einige Sekunden an Verarbeitungszeit benötigt. \cite{GrabCut}
 
+\subsubsection{K-Means Clustering}
+"'K-Means Clustering"' ist ebenfalls ein Algorithmus, der bereits in OpenCV implementiert ist. Dieser reduziert die Anzahl an Farben innerhalb eines Bildes auf eine beliebige Anzahl an Farben, was für die Bestimmung der dominanten Farbe verwendet werden könnte. Somit könnte hiermit die Farbe des Fahrzeugs ermittelt und danach dem Feature Vektor ergänzt werden. Mithilfe eines Integer kann bestimmt werden, wie viele Cluster das Bild schlussendlich haben soll. Dies bedeutet, wie viele verschiedene Farben nach Abschluss des Algorithmus noch vorhanden sind. Die dominanten Farben werden anfangs zufällig gewählt und danach durch mehrere Iterationen verschoben, bis der quadratischen Abstand zu einem der Farbpunkte minimal wird. Aus diesem Grund benötigt dieser Algorithmus einige Zeit, bis sich die Farbpunkte nicht mehr ändern und deshalb das Resultat errechnet wurde. Nachfolgendes Beispiel (\fref{bClustering}) zeigt das Originalbild und das Ergebnis des Clustering Algorithmus. Damit dafür die dominante Farbe ermittelt werden konnte, wurde das Bild vorgängig mit "'GrabCut"' bearbeitet.
+
+\begin{figure}[H]
+  \centering
+  \subfigure[Originalbild nach "'GrabCut"']{\includegraphics[width=0.49\textwidth]{Testversuche/Clustering1.jpg}}
+  \subfigure[Ergebnis des Clustering Algorithmus]{\includegraphics[width=0.49\textwidth]{Testversuche/Clustering2.jpg}}
+  \caption{Beispiel K-Means Clustering}
+  \label{bClustering}
+\end{figure}
+
+Die Anzahl der eingegebenen Cluster beim Beispiel betrug zwei. Obwohl die Farbe des Ergebnisses heller als beim Originalbild erscheint, könnte damit die Farbe "'rot"' extrapoliert und dem Feature Vektor ergänzt werden. \cite{Clustering}
+
 \subsubsection{Schattenentfernung}
 Als die ersten Testaufnahmen durchgeführt wurden, musste festgestellt werden, dass Schatten zu einem grossen Problem führen konnte. Dies trat vor allem dann auf, wenn die Sonne den Schatten des Verkehrsteilnehmers in Richtung Kamera projizierte. Dadurch wurde der Bildausschnitt des Verkehrsteilnehmers grösser als er tatsächlich war, was weitere Auswertungen verfälschte. Aus diesem Grund wurde nach Möglichkeiten gesucht, um diesen Schatten zu entfernen, weshalb schlussendlich eine Funktion dafür geschrieben wurde.
 Falls ein Schatten vorhanden war, konnte dies am Differenzbild erkannt werden. Dort traten jeweils, waagrecht betrachtet, zwei helle Streifen und dazwischen ein dunkler Abschnitt auf. Auffällig daran ist, dass die Breite der hellen Steifen fast gleich gross waren, was auf die Geschwindigkeit des Fahrzeugs zurückzuführen ist. Der helle Streifen entstand, wenn nur auf einem der beiden Bilder, welche für das Differenzbild genutzt wurden, ein Schatten vorhanden war. Der dunkle Abschnitt zwischen den hellen Stellen entstand, wenn auf beiden Eingangsbildern bereits ein Schatten vorlag. Nachfolgende Abbildung (\fref{bBlurRemoveShadow}) zeigt die geschilderte Situation eines Differenzbildes mit Schatten.
