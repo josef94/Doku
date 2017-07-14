@@ -47,9 +47,11 @@
 % Zitationsstil
 %\usepackage{cite}
 %\bibliographystyle{ieeetr}
-\usepackage[backend=biber, style=ieee]{biblatex}
+\usepackage[backend=biber, defernumbers=true, style=ieee]{biblatex}
 \addbibresource{Verzeichnisse/Literatur.bib}
 \usepackage{url}
+\assignrefcontextkeyws[labelprefix=L]{L}
+\assignrefcontextkeyws[labelprefix=Q]{Q}
 
 % Grafiken einbinden
 \usepackage{graphicx}

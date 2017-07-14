@@ -2,14 +2,14 @@
 Bei den Komponenten musste darauf geachtet werden, dass diese den äusseren Einflüssen sowie den spezifischen Softwaretechnischen Daten genügen. Die einzelnen Geräte der Arbeit bestehen aus Rechnereinheit, Messsensor, WIFI-Adapter, Gehäuse sowie einer Spannungsversorgung.
 
 \subsubsection{Rechnereinheit}
-An die Rechnereinheit wurden sehr grosse Anforderungen gestellt, da diese bei $-40^\circ\text{C}$ aber auch bei über $40^\circ\text{C}$ die Auswertung durchführen muss. Ebenso muss die Rechnereinheit sehr viel Auswertung direkt durchführen, um so wenig wie möglich direkt zu speichern. Der Rechnerkern des Gerätes besteht aus einem Allwinner H3, welcher einen Quad-core Cortex-A7 mit bis zu 1.2GHz Taktrate besitzt. Dieser Rechnerkern ist einer der am besten geeignetsten für das Gerät da auf diesem mehrere Prozesse gleichzeitig ablaufen können, dies ist nötig um die gewünschte Verarbeitungsgeschwindigkeit zu erreichen. Im Zuge dessen wurde ein vorgefertigtes Board in dem Gerät eingesetzt. Das eingesetzte Board ist ein NanoPi NEO von FriendlyARM \ref{NanoPi}. Der NanoPi NEO hat den oben genannten Quad-core Prozessor mitwelchem die Aufgabe gelöst werden kann. \\
+An die Rechnereinheit wurden sehr grosse Anforderungen gestellt, da diese bei $-40^\circ\text{C}$ aber auch bei über $40^\circ\text{C}$ die Auswertung durchführen muss. Ebenso muss die Rechnereinheit sehr viel Auswertung direkt durchführen, um so wenig wie möglich direkt zu speichern. Der Rechnerkern des Gerätes besteht aus einem Allwinner H3, welcher einen Quad-core Cortex-A7 mit bis zu 1.2GHz Taktrate besitzt. Dieser Rechnerkern ist einer der am besten geeignetsten für das Gerät da auf diesem mehrere Prozesse gleichzeitig ablaufen können, dies ist nötig um die gewünschte Verarbeitungsgeschwindigkeit zu erreichen. Im Zuge dessen wurde ein vorgefertigtes Board in dem Gerät eingesetzt. Das eingesetzte Board ist ein NanoPi NEO von FriendlyARM \cite{NanoPi}. Der NanoPi NEO hat den oben genannten Quad-core Prozessor mitwelchem die Aufgabe gelöst werden kann. \\
 Dieses Board bietet ebenso den Vorteil, dass alles auf einer Fläche von 40x40cm sich befindet. So kann das gesamte Gerät sehr kompakt gestaltet werden. Das Board wird mit einer externen Speicherkarte verwendet, auf welcher das Betriebssystem, in Falle von Fast and Curious, ist es Ubuntu 16.04 (Long Time Supported), sich befindet. \\
 Nachteil an dem NanoPi NEO sind zum einen die eher schlechte Dokumentation sowie jede glich das Vorhandensein eines einzelnen USB Anschlusses. Aus diesem Grunde musste bei dem Gerät ein USB Dongle verwendet werden um den Messsensor sowie den USB-WIFI-Adapter anzuschliessen. Nachfolgendes Bild (\fref{bLayout}) zeigt das Layout des NanoPi NEO.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=0.6\textwidth]{Hardware/NanoPi_Neo.jpg} 
-  \caption{Layout des NanoPi NEO. Quelle: \ref{NanoPiNeo}}
+  \includegraphics[width=0.99\textwidth]{Hardware/NanoPi_Neo.jpg} 
+  \caption{Layout des NanoPi NEO. \cite{NanoPiNeo}}
   \label{bLayout}
 \end{figure}
 
@@ -38,7 +38,7 @@ $\alpha_{60} = 2* \arctan(l_{4,60 }) \approx 120^\circ$ \\\\
 \end{figure}
 
 Durch diese Berechnung wurde auf eine Kamera eingesetzt, welche mit einer Framerate Anzahl von 60FPS Bilder aufnimmt. \\
-Im produzierten Prototypen wurde eine "'ELP 1080p Full HD H.264"' Kamera mit 3.6mm Objektiv verwendet. Diese Kamera hat den Vorteil, dass die gewünschten Treiber auf dem Betriebssystem schon installiert sind und die Kamera sehr Preisgünstig zu haben ist. Diese Kamera besitzt bei einer FPS Anzahl von 60 eine Auflösung von 640x480 Pixel und einem 3.6mm Objektiv. Diese Anzahl an Pixel reicht aus um die nötigen Daten der Verkehrsteilnehmer zu extrahieren. \ref{Kamera}
+Im produzierten Prototypen wurde eine "'ELP 1080p Full HD H.264"' Kamera mit 3.6mm Objektiv verwendet. Diese Kamera hat den Vorteil, dass die gewünschten Treiber auf dem Betriebssystem schon installiert sind und die Kamera sehr Preisgünstig zu haben ist. Diese Kamera besitzt bei einer FPS Anzahl von 60 eine Auflösung von 640x480 Pixel und einem 3.6mm Objektiv. Diese Anzahl an Pixel reicht aus um die nötigen Daten der Verkehrsteilnehmer zu extrahieren. \cite{Kamera}
 
 \subsubsection{WIFI-Adapter}
 Um das Gerät Steuern und Überwachen zu können wird eine kabellose Verbindung benötigt. Dies ist am einfachsten über eine WIFI-Verbindung zu ermöglichen. Da das NanoPi NEO keine internen Funksender eingebaut hat wird ein WIFI-Adapter benötigt. Dazu kann jeder WIFI-Adapter verwendet werden, welche für Linux Systeme Treiber Supporten. Werden für die Geräte unterschiedliche WIFI-Adapter eingesetzt, so muss nach der Anleitung für die Installation der Geräte vorgegangen werden, und die Namen der Adapter geändert werden.\\
