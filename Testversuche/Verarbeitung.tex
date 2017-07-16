@@ -8,7 +8,7 @@ Falls ein Schatten vorhanden war, konnte dies am Differenzbild erkannt werden. D
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.65\textwidth]{Testversuche/BlurRemoveShadow.jpg} 
-  \caption{Differenzbild zur Demonstration des Schattens}
+  \caption{Differenzbild zur Demonstration des Schattens.}
   \label{bBlurRemoveShadow}
 \end{figure} 
 
@@ -17,7 +17,7 @@ Beim Algorithmus der Funktion wird jeweils eine horizontale Linie betrachtet und
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.7\textwidth]{Testversuche/RemoveShadow.jpg} 
-  \caption{Differenzbild mit entferntem Schatten}
+  \caption{Differenzbild mit entferntem Schatten.}
   \label{bRemoveShadow}
 \end{figure}
 
@@ -63,7 +63,7 @@ Die Kategorisierung erfolgt durch die Anzahl Pixel, welche ein Fahrzeug beinhalt
 Die weissen Pixel können addiert und das Ergebnis nach der Kategorisierung durch den Schwellwert ebenfalls dem Feature Vektor hinzugefügt werden. \cite{GrabCut, CountNonZero}
 
 \subsubsection{Geschwindigkeit}
-Vom Prinzip her funktioniert die Errechnung der Geschwindigkeit nach einem ähnlichen Muster wie die Kategorisierung. Auch hier wird der "'Grabcut"' Algorithmus verwendet, um den Verkehrsteilnehmer vom Hintergrund zu trennen. Anschliessend wird in der Mitte des Bildes, sowhl links als auch rechts, die Anzahl an schwarzen Pixel bis zum Rand ermittelt und das grössere Ergebnis genommen. Dieses Ergebnis zeigt die Distanz in Pixeln, welche innerhalb zwei aufeinanderfolgenden Frames vom Fahrzeug zurückgelegt wurden. Der verwendete Bildausschnitt ist dabei stets auf einer Seite länger, da dort die Position des Fahrzeugs vom vorherigen Frame noch involviert ist. Aus diesem Grund kann direkt dieser Abstand also Berechnungskriterium gewählt werden. Eine grobe Einschätzung der Geschwindigkeit ist somit relativ einfach zu bewältigen. Wie beim Kategorisieren muss auch hier ein Faktor aufgrund der Fahrbahn mit einberechnet werden. Siehe unten (\fref{bVelocity}) zur besseren Verständlichkeit.
+Vom Prinzip her funktioniert die Errechnung der Geschwindigkeit nach einem ähnlichen Muster wie die Kategorisierung. Auch hier wird der "'Grabcut"' Algorithmus verwendet, um den Verkehrsteilnehmer vom Hintergrund zu trennen. Anschliessend wird in der Mitte des Bildes, sowohl links als auch rechts, die Anzahl an schwarzen Pixel bis zum Rand ermittelt und das grössere Ergebnis genommen. Dieses Ergebnis zeigt die Distanz in Pixeln, welche innerhalb zwei aufeinanderfolgenden Frames vom Fahrzeug zurückgelegt wurden. Der verwendete Bildausschnitt ist dabei stets auf einer Seite länger, da dort die Position des Fahrzeugs vom vorherigen Frame noch involviert ist. Aus diesem Grund kann direkt dieser Abstand also Berechnungskriterium gewählt werden. Eine grobe Einschätzung der Geschwindigkeit ist somit relativ einfach zu bewältigen. Wie beim Kategorisieren muss auch hier ein Faktor aufgrund der Fahrbahn mit einberechnet werden. Siehe unten (\fref{bVelocity}) zur besseren Verständlichkeit.
 
 \begin{figure}[H]
   \centering
