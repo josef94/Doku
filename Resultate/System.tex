@@ -1,1 +1,9 @@
 \subsection{System}
+Ein System besteht aus mehreren Einzelgeräten, mit welchen, wie vorhin beschrieben, das Zählen, die Kategorisierung und die Geschwindigkeitsmessung durchgeführt werden. Es werden mehrere Geräte benötigt um den Verkehrsfluss in dem definiert begrenztem Gebiet darstellen zu können. Dabei werden die über den aufgenommenen Zeitstempel und die Fahrtrichtung der Verkehrsfluss statistisch rekonstruiert. Hierbei wird das vorhin erstellte Netzwerk des begrenzten Gebietes als Darstellungsgrundlage verwendet. Es werden zunächst die nächstgelegenen Geräte, welche auf direktem Weg erreichbar sind, identifiziert und von diesen die Daten des Feature Vektors extrahiert. Diese Daten werden dann nach dem Zeitstempel sortiert und mit einem Index versehen. Sind die Daten nun Vorbereitet werden durch Länge der Verbindungen und Geschwindigkeiten auf diesen, die voraussichtliche Durchfahrtszeit berechnet. Danach wird Statistisch die höchste Wahrscheinlichkeit welchen Weg der Verkehrsteilnehmer nahm berechnet und eingezeichnet. Sind alle Geräte untereinander verglichen und alle Wege in dem Netzwerk eingezeichnet sind erhält man, wie unten dargestellt (\fref{bAuswertung}), eine Auswertung. 
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{Resultate/Auswertung.jpg} 
+  \caption{Darstellung des Verkehrsflusses in Satteins.}
+  \label{bAuswertung}
+\end{figure}
