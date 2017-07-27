@@ -3,7 +3,7 @@ Beim NanoPi Neo handelt es sich wie bereits erwähnt um einen Prozessor mit vier
 
 \begin{figure}[H]
   \centering
-  \includegraphics[height=0.49\textwidth]{Software/Architektur.jpg} 
+  \includegraphics[width=0.99\textwidth]{Software/Architektur.jpg} 
   \caption{Aufteilung der vier Kerne.}
   \label{bArchitektur}
 \end{figure}
@@ -17,8 +17,8 @@ Sobald sich zwei Videos im zugehörigen Ordner befinden, kann davon ausgegangen 
 
 \begin{figure}[H]
   \centering
-  \subfigure[Frame1]{\includegraphics[width=0.40\textwidth]{Software/Frame1.jpg}}
-  \subfigure[Frame2]{\includegraphics[width=0.40\textwidth]{Software/Frame2.jpg}}
+  \subfigure[Frame1]{\includegraphics[width=0.49\textwidth]{Software/Frame1.jpg}}
+  \subfigure[Frame2]{\includegraphics[width=0.49\textwidth]{Software/Frame2.jpg}}
   \caption{Zwei aufeinanderfolgende Frames}
   \label{bFrames}
 \end{figure}
@@ -69,19 +69,19 @@ Nachfolgende Abbildungen (\fref{bMotionDetection}) zeigt ein Auto, welches von r
 
 \begin{figure}[H]
 \centering
-	\subfigure[Blob Frame 1]{\includegraphics[scale=0.32]{Software/Blob1.jpg}}\quad
-   \subfigure[Bild Frame 1]{\includegraphics[scale=0.32]{Software/Detection1.jpg}}\\
-   \subfigure[Blob Frame 2]{\includegraphics[scale=0.32]{Software/Blob2.jpg}}\quad
-   \subfigure[Bild Frame 2]{\includegraphics[scale=0.32]{Software/Detection2.jpg}}\\
-   \subfigure[Blob Frame 3]{\includegraphics[scale=0.32]{Software/Blob3.jpg}}\quad
-   \subfigure[Blob Frame 3]{\includegraphics[scale=0.32]{Software/Detection3.jpg}}
+	\subfigure[Blob Frame 1]{\includegraphics[width=0.48\textwidth]{Software/Blob1.jpg}}\quad
+   \subfigure[Bild Frame 1]{\includegraphics[width=0.48\textwidth]{Software/Detection1.jpg}}\\
+   \subfigure[Blob Frame 2]{\includegraphics[width=0.48\textwidth]{Software/Blob2.jpg}}\quad
+   \subfigure[Bild Frame 2]{\includegraphics[width=0.48\textwidth]{Software/Detection2.jpg}}\\
+   \subfigure[Blob Frame 3]{\includegraphics[width=0.48\textwidth]{Software/Blob3.jpg}}\quad
+   \subfigure[Blob Frame 3]{\includegraphics[width=0.48\textwidth]{Software/Detection3.jpg}}
 \caption{Vehicle Tracking mithilfe von Blobs}
 \label{bMotionDetection}
 \end{figure}
 
 In der Funktion zur Speicherung werden die drei vorgängig erwähnten Bilder in den entsprechenden Ordner im Speicher abgelegt und schlussendlich alle relevanten Informationen an den Filehandler übergeben. Dieser öffnet die Datei des Feature Vektors und schreibt alle Informationen inklusive generierten Zeitstempel in eine neue Zeile.\\
 Danach ist dieser Verkehrsteilnehmer erfolgreich aufgenommen und somit abgeschlossen und der Nächste kann ermittelt werden.
-Wenn sich keine Bilder mehr im Frames Ordner befinden, beginnt die letzte Aufgabe dieses Programms. Dies bedeutet, den eben bearbeiten Ordner zu löschen, da auch dieser für die weitere Auswertung nicht mehr benötigt wird. Der Nachbearbeitung wurde fix der Prozessorkern 3 zugeteilt. Bei hohem Verkehrsaufkommen benötigt diese auch die vollen 100\% dieses Kerns. \cite{OpenCVCC}
+Wenn sich keine Bilder mehr im Frames Ordner befinden, beginnt die letzte Aufgabe dieses Programms. Dies bedeutet, den eben bearbeiten Ordner zu löschen, da auch dieser für die weitere Auswertung nicht mehr benötigt wird. Der Nachbearbeitung wurde fix der Prozessorkern 3 zugeteilt. Bei hohem Verkehrsaufkommen benötigt diese auch die vollen 100\% dieses Kerns. \textbf{Die Software basiert auf dem Grundgerüst von \cite{OpenCVCC} und wurde auf die Aufgabe von Fast and Curious angepasst, verändert und erweitert.}
 
 \subsubsection{Steuerung und Überwachung}
 Da sich die vorhin erwähnten Prozesse selber beenden, sobald ihre Arbeit erledigt ist, benötigt es einen Prozess, welcher sich um die Koordination kümmert. Dies ist auch die Hauptaufgabe dieses Prozesses. Videos werden nur zwischen morgens um 05:00 Uhr und abends um 21:00 Uhr aufgenommen. Dies ist notwendig um sicherstellen zu können, dass alle Videos bis zum nächsten Morgen abgearbeitet sind. Somit soll ein Speicherplatz Problem verhindert werden, falls die Vorverarbeitung aufgrund von hohem Verkehrsaufkommen die Videos langsamer prozessiert als diese aufgenommen werden.\\
