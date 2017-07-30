@@ -1,10 +1,10 @@
 \subsection{Komponenten}
-Bei den Komponenten musste darauf geachtet werden, dass diese den äusseren Einflüssen, sowie den spezifischen softwaretechnischen Daten genügen. Die einzelnen Elemente der Geräte bestehen aus Rechnereinheit, Messsensor, WIFI-Adapter, Gehäuse als auch einer Spannungsversorgung.
+Bei den Komponenten musste darauf geachtet werden, dass diese den äusseren Einflüssen, sowie den spezifischen softwaretechnischen Daten genügen. Die einzelnen Elemente der Geräte bestehen aus Rechnereinheit, Messsensor, WIFI-Adapter, Gehäuse und einer Spannungsversorgung.
 
 \subsubsection{Rechnereinheit}
 An die Rechnereinheit wurden sehr grosse Anforderungen gestellt, da diese sowohl bei $-40^\circ\text{C}$, als auch bei über $40^\circ\text{C}$ die Auswertung korrekt durchführen muss. Ebenso muss die Rechnereinheit sehr viel Auswertungen direkt durchführen, damit so wenig wie möglich gespeichert wird. Der Rechnerkern des Gerätes besteht aus einem Allwinner H3, welcher einen Quad-core Cortex-A7 mit bis zu 1.2 GHz Taktrate besitzt. Dieser Rechnerkern ist mit am besten für das Gerät geeignet, da auf diesem mehrere Prozesse gleichzeitig ablaufen können. Dies ist nötig um die gewünschte Verarbeitungsgeschwindigkeit zu erreichen. Im Zuge dessen wurde ein vorgefertigtes Board im Gerät eingesetzt. Das eingesetzte Board ist ein NanoPi NEO von FriendlyARM \cite{NanoPi}. Der NanoPi NEO hat den oben genannten Quad-core Prozessor, mit dem die Aufgabe problemlos gelöst werden kann. \\\\
 Dieses Board bietet ebenso den Vorteil, dass sich alles auf einer Fläche von 40x40 cm befindet. So kann das gesamte Gerät sehr kompakt gestaltet werden. Das Board wird mit einer externen Speicherkarte verwendet, auf welcher sich das Betriebssystem befindet. Im Falle von "'Fast and Curious"' ist es Ubuntu 16.04 (Long Time Supported). \\\\
-Nachteil am NanoPi NEO sind zum einen die eher schlechte Dokumentation sowie das Vorhandensein von lediglich einem einzelnen USB Anschlusses. Aus diesem Grunde musste beim Gerät ein USB Hub verwendet werden, um den Messsensor sowie den USB-WIFI-Adapter anzuschliessen. Nachfolgendes Bild (\fref{bLayout}) zeigt das Layout des NanoPi NEO.
+Nachteil am NanoPi NEO sind zum einen die eher schlechte Dokumentation sowie das Vorhandensein von lediglich einem einzelnen USB Anschlusses. Aus diesem Grund musste beim Gerät ein USB Hub verwendet werden, um den Messsensor sowie den USB-WIFI-Adapter anzuschliessen. Nachfolgendes Bild (\fref{bLayout}) zeigt das Layout des NanoPi NEO.
 
 \begin{figure}[H]
   \centering
@@ -33,7 +33,7 @@ $\alpha_{60} = 2* \arctan(l_{4,60 }) \approx 120^\circ$ \\\\
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.99\textwidth]{Hardware/ObjektivBerechnung.jpg} 
-  \caption{Skizze zur Berechnung der Kamera Daten.}
+  \caption{Skizze zur Berechnung der Kameradaten.}
   \label{bBerechnung}
 \end{figure}
 

@@ -1,23 +1,24 @@
 \subsection{Features erweitern}
-Je besser der Feature Vektor ist, desto einfacher und genauer kann die im Anschluss folgende Verkehrsverfolgung durchgeführt werden. Aus diesem Grund wäre es notwendig, aus den vorhandenen Bildern mehr Features zu erkennen. Nachfolgend sind deshalb einige Möglichkeiten aufgelistet, wie der Feature Vektor um zusätzliche Spalten erweitert werden könnte.
-
-\subsubsection{Kategorisieren}
-Ein mögliches Feature, das realisiert werden könnte, wäre beispielsweise das Kategorisieren der Verkehrsteilnehmer in mehrere Unterklassen. Mögliche Unterteilungen wären hierbei Fahrrad, Motorrad, PKW, Lieferwagen, Lastwagen, Traktor usw. Realisiert werden könnte dies über das Verhältnis der Länge und Breite und gleichzeitig der Anzahl an Pixeln der Blobs.
+Je besser der Feature Vektor ist, desto einfacher und genauer kann die anschliessende Verkehrsverfolgung durchgeführt werden. Aus diesem Grund wäre es vorteilhaft, wenn aus den vorhandenen Bildern mehr Features zu erkennen sind. Nachfolgend sind deshalb einige Möglichkeiten aufgelistet, wie der Feature Vektor um zusätzliche Spalten erweitert werden könnte.
 
 \subsubsection{Fahrzeuglänge \& -breite}
-Ebenfalls plausibel könnte die Identifikation der Fahrzeuglänge oder -breite sein. Im besten Fall wäre diese direkt über das vorhandene Bild realisierbar. Dazu müsste aber ein Referenzmass für beide Fahrbahnen in Sichtweite der Kamera aufgetragen werden. Das Herauslesen von Längenmassen könnte jedoch auch über andere Sensoren realisiert werden.
+Ein mögliches Feature, das realisiert werden könnte, wäre die Identifikation der Fahrzeuglänge und -breite. Im besten Falle könnte man dies direkt am vorhandenen Bild ableiten. Dazu müsste aber ein Referenzmass für beide Fahrbahnen in Sichtweite der Kamera aufgetragen werden. Das Herauslesen von Längenmassen ist jedoch auch über andere Sensoren realisierbar. 
+
+\subsubsection{Kategorisieren}
+Ebenfalls plausibel wäre beispielsweise das Kategorisieren der Verkehrsteilnehmer in mehrere Unterklassen. Mögliche Unterteilungen sind hierbei unter anderem Fahrrad, Motorrad, PKW, Lieferwagen, Lastwagen oder Traktor. Die Unterscheidung könnte man anhand des Verhältnisses zwischen Länge und Breite und anhand der Pixelanzahl der Blobs erhalten. Die im Abschnitt Testversuche geschilderte Kategorisierung könnte dabei auf mehrere Klassen ausgeweitet werden.
+
 
 \subsubsection{Farbe}
-Die Farbe des Fahrzeugs wäre ein mögliches Merkmal, das unterschieden werden könnte. Damit dieses Feature gegenüber verschiedenen Belichtungen dennoch genügend resistent wäre, müsste dabei die erkannte Farbe in eine von etwa zehn Möglichkeiten eingeteilt werden. Ebenso müsste hier die Tageszeit beachtet werden, da eine Farbeerkennung unmöglich ist, wenn es draussen dunkel ist.
+Die Farbe des Fahrzeuges ist ein weiteres wichtiges Merkmal, womit es erneut identifiziert werden kann. Damit dieses Feature gegenüber verschiedenen Belichtungen dennoch genügend resistent wäre, müsste dabei die erkannte Farbe in eine von etwa zehn Möglichkeiten eingeteilt werden. Die Tageszeit spielt dabei eine grosse Rolle, da eine Farberkennung unmöglich ist, wenn es draussen dunkel ist. Die Unterteilung in eine der zehn Farben wäre mithilfe des "'K-Means Clustering"'-Algorithmus plausibel.
 
 \subsubsection{Farbfläche}
-Je grösser ein Auto ist, desto mehr Farbflächen sind vorhanden. Die Anzahl Pixel dieser Farbflächen könnte neben der Farbe ebenfalls dem Feature Vektor ergänzt werden. Damit eine Unterscheidung zwischen Fensterscheibe und Farbfläche durchgeführt werden kann, müsste vorgängig ein Clustering auf eine einheitliche Farbe durchgeführt werden.
+Je grösser ein Auto ist, desto mehr Farbflächen sind vorhanden. Die Anzahl der Pixel dieser Farbflächen könnte, neben der Farbe an sich, ebenfalls dem Feature Vektor ergänzt werden. Damit eine Unterscheidung zwischen Fensterscheibe und Farbfläche stattfinden kann, müsste vorgängig ein Clustering auf eine einheitliche Farbe durchgeführt werden.
 
 \subsubsection{Sonderanbringungen}
-Auf einigen Fahrzeugen befinden sich Sonderanbringungen wie Beschriftungen oder Bilder. Wenn diese Sonderanbringungen erkannt und bestenfalls abgespeichert werden könnten, so wäre dadurch eine eindeutige Wiedererkennung dieses Verkehrsteilnehmers realisierbar. Durchführbar wäre dies, wenn ein Algorithmus eine Sonderanbringung erkennt und davon ein zusätzliches Bild abspeichert.
+Auf einigen Fahrzeugen befinden sich Sonderanbringungen wie Beschriftungen oder Bilder. Wenn diese Sonderanbringungen erkannt und bestenfalls abgespeichert werden könnten, so wäre dadurch eine eindeutige Wiedererkennung dieses Verkehrsteilnehmers denkbar. Realisierbar wäre dies, wenn ein Algorithmus eine Sonderanbringung erkennt und davon ein zusätzliches Bild abspeichert.
 
 \subsubsection{Nummerntafeln}
-Mithilfe der Nummerntafeln wären die meisten Verkehrsteilnehmer ohne grossen Aufwand verfolgbar, da es nur wenig Fahrzeuge gibt die keine Nummerntafel besitzen. Problematisch wäre jedoch, dass die Ausrichtung der Kamera zum Erkennen der Kennzeichen an der falschen Position ist. Ebenso darf eine Nummerntafel aus rechtlichen Gründen nicht ohne weiteres aufgenommen werden, da damit ein Verkehrsteilnehmer eindeutig identifiziert werden kann.
+Mithilfe der Nummerntafeln sind die meisten Verkehrsteilnehmer ohne grossen Aufwand verfolgbar, da es nur wenige Verkehrsteilnehmer gibt, die keine Nummerntafel besitzen. Es könnte jedoch zum Problem werden, da die Ausrichtung der Kamera an der falschen Position ist und deshalb das Kennzeichen nicht richtig erkannt wird. Ebenso darf eine Nummerntafel aus rechtlichen Gründen eigentlich nicht ohne Weiteres aufgenommen werden, da damit ein Verkehrsteilnehmer eindeutig identifiziert werden kann.
 
 \subsubsection{Geschwindigkeit}
-Obwohl die Geschwindigkeit kaum für eine Verkehrsverfolgung genutzt werden kann, da sich diese während der Fahrt kontinuierlich ändern kann, so wäre diese Information für Gemeinden nützlich. Mit der Geschwindigkeit der Verkehrsteilnehmer könnte ein Durchschnitt ermittelt werden, der als Indikator dient, wie schnell tatsächlich am Gerät vorbeigefahren wurde.
+Für eine Verkehrsverfolgung ist die Geschwindigkeit kaum relevant, da sie sich während der Fahrt kontinuierlich ändern kann. Jedoch wäre diese Information für die Gemeinden selbst nützlich. Mit der Geschwindigkeit der Verkehrsteilnehmer könnte ein Durchschnitt ermittelt werden, der als Indikator dient, wie schnell tatsächlich am Gerät vorbeigefahren wurde. Die geschilderte Geschwindigkeitserkennung im Kapitel Testversuche wäre dabei eine Variante, die verwendet werden könnte. Um jedoch genauere Daten zu erhalten, müssten bestenfalls andere Sensoren verwendet werden.
