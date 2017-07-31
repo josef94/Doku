@@ -1,5 +1,5 @@
 \subsection{Einzelnes Gerät}
-In diesem Abschnitt werden kurz die Ergebnise erwähnt, welche durch ein einzelnes Gerät entstehen. Jedes einzelne Gerät speicher die Daten welche es sammelt in einem Feature Vektor ab, welcher in \fref{bFVec} dargestellt ist. 
+In diesem Abschnitt werden die Ergebnise erwähnt, welche durch ein einzelnes Gerät entstehen. Jedes dieser Geräte speichert die gesammelten Daten in einem Feature Vektor ab. Die folgende Abbildung (\fref{bFVec}) zeigt zehn Einträge eines solchen Feature Vektors.
 
 \begin{figure}[H]
   \centering
@@ -9,18 +9,19 @@ In diesem Abschnitt werden kurz die Ergebnise erwähnt, welche durch ein einzeln
 \end{figure}
 
 \subsubsection{Zählen}
-Mithilfe eines einzelnen Gerätes kann an den Aufstellpunkten die Anzahl der vorbeifahrenden Verkehrsteilnehmer gezählt werden. An jedem der Aufstellpunkte erhält somit der Bediener eine Anzahl der Verkehrsteilnehmer welche in das Gebiet fahren und welche sich aus dem Gebiet heraus bewegen. Jedes dieser gezählten Verkehrsteilnehmer erhält zugleich eine vorlaufende Nummer, sowie einen Zeitstempel und eine Fahrtrichtung.
+Durch den Einsatz eines einzelnen Gerätes kann an den Aufstellpunkten die Anzahl der vorbeifahrenden Verkehrsteilnehmer gezählt werden. An jedem dieser Punkte erhält der Bediener die Anzahl der Verkehrsteilnehmer, welche in das Gebiet hinein- und welche  aus dem Gebiet heraus fahren. Ebenso enthält jedes dieser gezählten Verkehrsteilnehmer  eine fortlaufende Nummer, einen Zeitstempel und die Information über dessen Fahrtrichtung.
 
 \subsubsection{Kategorisieren}
-Jedes Einzelgerät ist ebenso im Stande die vorbeifahrenden Verkehrsteilnehmer in vordefinierte Kategorien einzuteilen. Dabei wird die Anzahl an Pixel welche sich bewegen gezählt und durch dies eine quantitative Kategorisierung in drei Kategorien zerlegt werden. Wie in \fref{bNachverarbeitung} in Spalte drei zusehen ist werden die Kategorien in NV, 1 und 2 eingeteilt. NV sind Verkehrsteilnehmer welche kleiner als ein Auto sind. Die 1 gibt an, dass es sich um ein Auto handelt und 2 sind dann grössere Verkehrsteilnehmer.
+Jedes Einzelgerät ist ebenso im Stande die vorbeifahrenden Verkehrsteilnehmer in vordefinierte Kategorien einzuteilen. Dabei wird die Anzahl an Pixeln, welche sich bewegen, gezählt. Dadurch kann eine quantitative Kategorisierung in drei Kategorien geschehen. Wie in \fref{bNachverarbeitung} in Spalte drei zu sehen ist, werden die Kategorien in "'NV"', "'1"' und "'2"' eingeteilt. "'NV"' sind Verkehrsteilnehmer, welche kleiner als ein Auto sind. Die "'1"' gibt an, dass es sich um ein Auto handelt. Die Nummer "'2"' deutet darauf hin, dass es sich um grössere Verkehrsteilnehmer handelt.
 
 \subsubsection{Geschwindigkeitserkennung}
-Um den Verkehrsfluss darstellen zu können, wird die momentane Geschwindigkeit des Verkehrsteilnehmers verwendet. Die Geschwindigkeit wird aus zwei aufeinanderfolgenden Frames extrahiert. Dabei wird der Positionsunterschied der Fahrzeuge auf den Frames verwendet um die Geschwindigkeit zu berechnen. Um die Geschwindigkeit berechnen zu können, wurde eine Referenzmessung durchgeführt, bei welcher zwischen zwei Positionsunterschieden, eine Pixelverschiebung von 58 Pixel pro km/h gemessen wurde. Nun kann durch einfache Schlussrechnung die Geschwindigkeit der Verkehrsteilnehmer berechnet werden. Dabei wird der Positionsunterschied, in Pixel, durch die Referenzmessung geteilt, und so erhält man die Geschwindigkeit der Fahrzeuge. Auf der \fref{bNachverarbeitung} in Spalte sechs, sind die berechneten Geschwindigkeiten zu sehen und mit einem freiwählbaren Farbcode, zur besseren Veranschaulichung, markiert. Um die Geschwindigkeitsverteilung noch besser darzustellen, wurden diese wie in \fref{bGeschwDiagramm} in einem Diagramm veranschaulicht. Der grösste Teil der Verkehrsteilnehmer hielt sich beinahe an die 50km/h Grenze im Dorf, jedoch wurden Geschwindigkeiten weit über diesen gemessen welche auch gefahren werden, da der Messpunkt am Ende des Dorfes liegt.
+Die Geschwindigkeit der Verkehrsteilnehmer dient als Indikator, wie schnell tatsächlich an den Geräten vorbei gefahren wird. Ein Grossteil der Fahrzeuglenker reduzieren ihre Geschwindigkeit, falls sie merken, dass diese aufgezeichnet wird. Da sich "'Fast and Curious"' auf einer Höhe von sechs Metern befindet, werden diese Geräte von den meisten Verkehrsteilnehmern nicht erkannt, weshalb diese ohne die Geschwindigkeit zu Drosseln vorbei fahren. Aufgrund dessen kann die tatsächliche Geschwindigkeit besser errechnet werden.\\\\
+Die Geschwindigkeit kann aus zwei aufeinanderfolgenden Frames extrahiert werden. Dabei wird der Positionsunterschied der Fahrzeuge auf den Frames verwendet. Um die Geschwindigkeit berechnen zu können, wurde eine Referenzmessung durchgeführt, bei welcher zwischen zwei aufeinanderfolgenden Frames, eine Verschiebung von 58 Pixeln pro km/h gemessen wurde. Nun konnte durch eine einfache Schlussrechnung die Geschwindigkeit der Verkehrsteilnehmer berechnet werden. Dabei wird der Positionsunterschied, in Pixeln, durch die Referenzmessung geteilt. Das Ergebnis dabei ist die Geschwindigkeit des Fahrzeugs. Auf \fref{bNachverarbeitung} in Spalte sechs, sind die berechneten Geschwindigkeiten dargestellt. Mit einem frei wählbaren Farbcode wurde das Ergebnis markiert. Für eine besser Veranschaulichung wurde zudem ein Diagramm (\fref{bGeschwDiagramm}) hinzugefügt. Darauf ist ersichtlich, dass der grösste Teil der Verkehrsteilnehmer sich beinahe an die maximale Höchstgeschwindigkeit von  50 km/h  im Dorf hielt. Dennoch wurden auch Geschwindigkeiten weit über der maximal tollerierten Höchstgeschwindigkeit gemessen.
 
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Resultate/GeschwDiagramm.jpg} 
-  \caption{Diagramm der Geschwindigkeitsverteilung auf einer 50er Straße am Ende eines Dorfes.}
+  \caption{Diagramm der Geschwindigkeitsverteilung auf einer 50er Strasse am Ende eines Dorfes.}
   \label{bGeschwDiagramm}
 \end{figure}
 
@@ -28,6 +29,6 @@ Um den Verkehrsfluss darstellen zu können, wird die momentane Geschwindigkeit d
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.6\textwidth]{Resultate/Nachverarbeitung.jpg} 
-  \caption{Tabelle des nachverarbeiteten Feature Vektor.}
+  \caption{Tabelle des nachverarbeiteten Feature Vektors.}
   \label{bNachverarbeitung}
 \end{figure}
