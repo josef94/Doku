@@ -16,7 +16,7 @@ Jedes Einzelgerät ist ebenso im Stande die vorbeifahrenden Verkehrsteilnehmer i
 
 \subsubsection{Geschwindigkeitserkennung}
 Die Geschwindigkeit der Verkehrsteilnehmer dient als Indikator, wie schnell tatsächlich an den Geräten vorbei gefahren wird. Ein Grossteil der Fahrzeuglenker reduzieren ihre Geschwindigkeit, falls sie merken, dass diese aufgezeichnet wird. Da sich "'Fast and Curious"' auf einer Höhe von sechs Metern befindet, werden diese Geräte von den meisten Verkehrsteilnehmern nicht erkannt, weshalb diese ohne die Geschwindigkeit zu Drosseln vorbei fahren. Aufgrund dessen kann die tatsächliche Geschwindigkeit besser errechnet werden.\\\\
-Die Geschwindigkeit kann aus zwei aufeinanderfolgenden Frames extrahiert werden. Dabei wird der Positionsunterschied der Fahrzeuge auf den Frames verwendet. Um die Geschwindigkeit berechnen zu können, wurde eine Referenzmessung durchgeführt, bei welcher zwischen zwei aufeinanderfolgenden Frames, eine Verschiebung von 58 Pixeln pro km/h gemessen wurde. Nun konnte durch eine einfache Schlussrechnung die Geschwindigkeit der Verkehrsteilnehmer berechnet werden. Dabei wird der Positionsunterschied, in Pixeln, durch die Referenzmessung geteilt. Das Ergebnis dabei ist die Geschwindigkeit des Fahrzeugs. Auf \fref{bNachverarbeitung} in Spalte sechs, sind die berechneten Geschwindigkeiten dargestellt. Mit einem frei wählbaren Farbcode wurde das Ergebnis markiert. Für eine besser Veranschaulichung wurde zudem ein Diagramm (\fref{bGeschwDiagramm}) hinzugefügt. Darauf ist ersichtlich, dass der grösste Teil der Verkehrsteilnehmer sich beinahe an die maximale Höchstgeschwindigkeit von  50 km/h  im Dorf hielt. Dennoch wurden auch Geschwindigkeiten weit über der maximal tollerierten Höchstgeschwindigkeit gemessen.
+Die Geschwindigkeit kann aus zwei aufeinanderfolgenden Frames extrahiert werden. Dabei wird der Positionsunterschied der Fahrzeuge auf den Frames verwendet. Um die Geschwindigkeit berechnen zu können, wurde eine Referenzmessung durchgeführt, bei welcher zwischen zwei aufeinanderfolgenden Frames, eine Verschiebung von 58 Pixeln pro km/h gemessen wurde. Nun konnte durch eine einfache Schlussrechnung die Geschwindigkeit der Verkehrsteilnehmer berechnet werden. Dabei wird der Positionsunterschied, in Pixeln, durch die Referenzmessung geteilt. Das Ergebnis dabei ist die Geschwindigkeit des Fahrzeugs. Bei größeren Fahrzeugen, wie einem LKW oder einem Traktor, wurde die Verschiebung von 58 Pixeln pro km/h auf 25 Pixeln pro km/h gesenkt, da die Kanten dieser Fahrzeuge näher an der Kamera sich befinden. Auf \fref{bNachverarbeitung} in Spalte sechs, sind die berechneten Geschwindigkeiten dargestellt. Mit einem frei wählbaren Farbcode wurde das Ergebnis markiert. Für eine besser Veranschaulichung wurde zudem ein Diagramm (\fref{bGeschwDiagramm}) hinzugefügt. Darauf ist ersichtlich, dass der grösste Teil der Verkehrsteilnehmer sich beinahe an die maximale Höchstgeschwindigkeit von  50 km/h  im Dorf hielt. Dennoch wurden auch Geschwindigkeiten weit über der maximal tollerierten Höchstgeschwindigkeit gemessen.
 
 \begin{figure}[H]
   \centering
@@ -25,10 +25,17 @@ Die Geschwindigkeit kann aus zwei aufeinanderfolgenden Frames extrahiert werden.
   \label{bGeschwDiagramm}
 \end{figure}
 
+\begin{figure}[H]
+  \centering
+  \subfigure[Geschwindigkeitsverteilung Auto und Motorrad]{\includegraphics[width=0.47\textwidth]{Resultate/GeschwDiagrammAutoMotorrad.jpg}}
+  \subfigure[Geschwindigkeitsverteilung grössere Fahrzeuge]{\includegraphics[width=0.47\textwidth]{Resultate/GeschwDiagrammLKW.jpg}}
+  \caption{Geschwindigkeitsverteilung aufgetrennt in die Kategorien kleine und grosse Fahrzeuge.}
+  \label{bFrames}
+\end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.6\textwidth]{Resultate/Nachverarbeitung.jpg} 
+  \includegraphics[width=0.58\textwidth]{Resultate/Nachverarbeitung.jpg} 
   \caption{Tabelle des nachverarbeiteten Feature Vektors.}
   \label{bNachverarbeitung}
 \end{figure}

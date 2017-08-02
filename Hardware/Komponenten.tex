@@ -2,34 +2,38 @@
 Bei den Komponenten musste darauf geachtet werden, dass diese den äusseren Einflüssen, sowie den spezifischen softwaretechnischen Daten genügen. Die einzelnen Elemente der Geräte bestehen aus Rechnereinheit, Messsensor, WIFI-Adapter, Gehäuse und einer Spannungsversorgung.
 
 \subsubsection{Rechnereinheit}
-An die Rechnereinheit wurden sehr grosse Anforderungen gestellt, da diese sowohl bei $-40^\circ\text{C}$, als auch bei über $40^\circ\text{C}$ die Auswertung korrekt durchführen muss. Ebenso muss die Rechnereinheit sehr viel Auswertungen direkt durchführen, damit so wenig wie möglich gespeichert wird. Der Rechnerkern des Gerätes besteht aus einem Allwinner H3, welcher einen Quad-core Cortex-A7 mit bis zu 1.2 GHz Taktrate besitzt. Dieser Rechnerkern ist mit am besten für das Gerät geeignet, da auf diesem mehrere Prozesse gleichzeitig ablaufen können. Dies ist nötig um die gewünschte Verarbeitungsgeschwindigkeit zu erreichen. Im Zuge dessen wurde ein vorgefertigtes Board im Gerät eingesetzt. Das eingesetzte Board ist ein NanoPi NEO von FriendlyARM \cite{NanoPi}. Der NanoPi NEO hat den oben genannten Quad-core Prozessor, mit dem die Aufgabe problemlos gelöst werden kann. \\\\
-Dieses Board bietet ebenso den Vorteil, dass sich alles auf einer Fläche von 40x40 cm befindet. So kann das gesamte Gerät sehr kompakt gestaltet werden. Das Board wird mit einer externen Speicherkarte verwendet, auf welcher sich das Betriebssystem befindet. Im Falle von "'Fast and Curious"' ist es Ubuntu 16.04 (Long Time Supported). \\\\
+An die Rechnereinheit wurden sehr grosse Anforderungen gestellt, da diese sowohl bei $-10^\circ\text{C}$, als auch bei über $40^\circ\text{C}$ die Auswertung korrekt durchführen muss. Ebenso muss die Rechnereinheit sehr viel Auswertungen direkt durchführen, damit so wenig wie möglich gespeichert wird. Der Rechnerkern des Gerätes besteht aus einem Allwinner H3, welcher einen Quad-core Cortex-A7 mit bis zu 1.2 GHz Taktrate besitzt. Dieser Rechnerkern ist mit am besten für das Gerät geeignet, da auf diesem mehrere Prozesse gleichzeitig ablaufen können. Dies ist nötig um die gewünschte Verarbeitungsgeschwindigkeit zu erreichen. Im Zuge dessen wurde ein vorgefertigtes Board im Gerät eingesetzt. Das eingesetzte Board ist ein NanoPi NEO von FriendlyARM \cite{NanoPi}. Der NanoPi NEO hat den oben genannten Quad-core Prozessor, mit dem die Aufgabe problemlos gelöst werden kann. \\\\
+Dieses Board bietet ebenso den Vorteil, dass sich alles auf einer Fläche von 40x40 mm befindet. So kann das gesamte Gerät sehr kompakt gestaltet werden. Das Board wird mit einer externen Speicherkarte verwendet, auf welcher sich das Betriebssystem befindet. Im Falle von "'Fast and Curious"' ist es Ubuntu 16.04 (Long Time Supported). \\\\
 Nachteil am NanoPi NEO sind zum einen die eher schlechte Dokumentation sowie das Vorhandensein von lediglich einem einzelnen USB Anschlusses. Aus diesem Grund musste beim Gerät ein USB Hub verwendet werden, um den Messsensor sowie den USB-WIFI-Adapter anzuschliessen. Nachfolgendes Bild (\fref{bLayout}) zeigt das Layout des NanoPi NEO.
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.99\textwidth]{Hardware/NanoPi_Neo.jpg} 
+  \includegraphics[width=0.98\textwidth]{Hardware/NanoPi_Neo.jpg} 
   \caption{Layout des NanoPi NEO. \cite{NanoPiNeo}}
   \label{bLayout}
 \end{figure}
 
 \subsubsection{Messsensor}
 Der Messsensor des Gerätes liefert die Daten der Verkehrsteilnehmer, mit denen dann die weitere Auswertung geschehen kann. Es müssen aus den Daten des Messsensors Kenngrössen extrahiert werden, welche die Verkehrsteilnehmer eindeutig identifizieren lässt. Es wurde auf eine Kamera zurückgegriffen, welche im Stande ist zwei Fahrspuren zu überdecken und mindestens drei Bilder pro vorbeifahrendem Verkehrsteilnehmer aufzunehmen. \\\\
-Mithilfe nachfolgender Berechnung wurde die geeignete Kamera, sowie das passende Objektiv dazu gefunden. Die Skizze (\fref{bBerechnung}) zeigt die schematische Darstellung eines Aufstellpunktes des Gerätes.\\\\
-\begin{citemize}
+Mithilfe nachfolgender Berechnung wurde die geeignete Kamera, sowie das passende Objektiv dazu gefunden. Die Skizze (\fref{bBerechnung}) zeigt die schematische Darstellung eines Aufstellpunktes des Gerätes. In Berechnung \eqref{e30FPS} wird der Öffnungswinkel des Objektivs bei einer Aufnahmegschwindigkeit von 30 FPS berechnet.  
+\begin{equation}
+\begin{split}
+l_{ 1,30 } = \frac{ 22.22\text{ m/s} }{ 30 \text{ FPS}} = 0.75 \text{ m} \\
+l_{ 4,30 } = 4 \cdot l_{1,30} = 3 \text{ m}\\ 
+\alpha_{30} = 2 \cdot \arctan(l_{4,30 }) \approx 150^\circ \\
+\label{e30FPS}
+\end{split}
+\end{equation}
 
-\item Kamera mit 30 FPS \\
-$l_{ 1,30 } = \frac{ 22.22 m/s }{ 30 FPS} = 0.75 m$ \\ 
-$l_{ 4,30 } = 4 * l_{1,30} = 3 m$\\
-$\alpha_{30} = 2* \arctan(l_{4,30 }) \approx 150^\circ$ \\\\
-
-
-\item Kamera mit 60 FPS \\
-$l_{ 1,60 } = \frac{ 22.22 m/s }{ 60 FPS} = 0.37 m$ \\ 
-$l_{ 4,60 } = 4 * l_{1,30} \approx 1.5 m$\\
-$\alpha_{60} = 2* \arctan(l_{4,60 }) \approx 120^\circ$ \\\\
-\end{citemize}
-
+In der nachstehenden Berechnung \eqref{e60FPS} wurde der selbe Winkel, wie in Berechnung \eqref{e30FPS}, jedoch bei einer Aufnahmegschwindigkeit von 60 FPS berechnet.
+\begin{equation}
+\begin{split}
+l_{ 1,60 } = \frac{ 22.22 \text{ m/s} }{ 60 \text{ FPS}} = 0.37 \text{ m}\\ 
+l_{ 4,60 } = 4 \cdot l_{1,30} \approx 1.5 \text{ m}\\
+\alpha_{60} = 2 \cdot \arctan(l_{4,60 }) \approx 120^\circ \\
+\label{e60FPS}
+\end{split}
+\end{equation}
 \begin{figure}[H]
   \centering
   \includegraphics[width=0.99\textwidth]{Hardware/ObjektivBerechnung.jpg} 
@@ -45,12 +49,17 @@ Um ein Gerät steuern und überwachen zu können, wird eine kabellose Verbindung
 Die einzige Anforderung an den WIFI-Adapter ist, dass dieser über USB angeschlossen werden kann. Die Geräte, welche produziert wurden, haben unterschiedliche WIFI-Adapter eingebaut und es funktioniert mit allen WIFI-Adaptern problemlos. Die Verbindung geschieht über einen Hotspot vom Endgerät zu NanoPi NEO.
 
 \subsubsection{Spannungsversorgung}
-Die Spannungsversorgung der Geräte wurde mittels Autobatterie und Spannungswandler realisiert. Das gesamte Gerät benötigt bei Volllast ca. 400 mA Strom. Die verwendeten Autobatterien haben eine Kapazität von 44 Ah und eine Spannung von 12 V. \\\\
+Die Spannungsversorgung der Geräte wurde mittels Autobatterie und Spannungswandler realisiert. Das gesamte Gerät benötigt bei Volllast ca. 400 mA Strom. Die verwendeten Autobatterien haben eine Kapazität von 40 Ah und eine Spannung von 12 V.
 
-$\frac { 44000\quad mAh\quad \times \quad 12\quad V }{ 400\quad mAh\quad \times \quad 5\quad V } =\quad 264\quad h=\quad 11 d$ \\
+\begin{equation}
+\begin{split}
+\frac { 40000\text{ mAh}\cdot 12 \text{ V} }{ 400 \text{ mAh} \cdot 5 \text{ V} } = 240 \text{ h}= 10 \text{ d} \\
+\label{eLaufzeit}
+\end{split}
+\end{equation}
 
-Wie aus dieser Berechnung entnommen werden kann, beläuft sich die Betriebszeit mit einer Akku Ladung theoretisch auf ca. 11 Tage. Wie erwartet ist die tatsächliche Laufzeit der Geräte kleiner als die Berechnete. Jedoch beträgt die tatsächliche Laufzeit trotzdem noch etwa die Hälfte, also ca. 5 Tage. \\\\
-In einer tatsächlichen Fertigung der Geräte muss eine neue Spannungsquelle gefunden werden, da Autobatterien beinahe immer bleihaltig sind. Es könnten später Lithium-Ionen-Akkus verwendet werden, jedoch waren diese für die Prototypen zu teuer und nicht rentabel. 
+Wie aus der Berechnung \eqref{eLaufzeit} entnommen werden kann, beläuft sich die Betriebszeit mit einer Akku Ladung theoretisch auf etwa zehn Tage. Wie erwartet ist die tatsächliche Laufzeit der Geräte kleiner als die Berechnete, da aufgrund von Temperaturschwankungen die Leistung der Batterie nachlässt. Ebenso dürfen die Batterien bis zu einer minimalen Entladungsspannung von 1.75 V \cite{bleiakku} entladen werden. Die Geräte hingegen benötigen 5 V um die Daten sammeln zu können. Die tatsächliche Laufzeit beträgt etwa vier Tage. \\\\
+Im Falle einer Fertigung des Gerätes muss eine neue Spannungsquelle gefunden werden, da Autobatterien beinahe immer bleihaltig sind. Es könnten später Lithium-Ionen-Akkus verwendet werden, welche kompakter und leistungsfähiger sind, jedoch waren diese für die Prototypen zu teuer und nicht rentabel. Um die Geräte längere Zeit betreiben zu können, wäre es möglich, die Akkumulatoren während des Tages mithilfe von Photovoltaikzellen aufzuladen.
 
 \subsubsection{Gehäuse}
 Das Gehäuse der Prototypen besteht aus einer Kunststoffbox, in welcher sich früher Lebensmittel befanden. In diesem Gehäuse wurden alle Komponenten, welche oben genannt wurden, mittels Klettverschluss angebracht, um die einzelnen Komponenten ohne separate Gehäuse weiter zu verwenden. Dies ermöglichte eine leichtere Bedienung bei der Programmierung der Software. Am Gehäuse wurden zwei Gewindestangen angebracht, um die Ausrichtung des Gerätes einstellen zu können. Weiterhin wurde im Deckel der Kunststoffboxen Schlitze geschnitten, die die Abwärme der Komponenten besser nach aussen befördern. Die Gehäuse werden an den Strassenlaternen mit grossen Kabelbindern befestigt.\\\\
