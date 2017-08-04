@@ -49,6 +49,7 @@ Auf dem unten dargestellten Bild (\fref{bFlussVor}) ist das Flussdiagramm des ge
   \label{bFlussVor}
 \end{figure}
 
+\newpage
 \subsubsection{Nachverarbeitung}
 Nachdem die Vorverarbeitung ein Video analysiert und die relevanten Frames abgespeichert hat, kann die Nachverarbeitung beginnen. Auch hier wird der Prozess erst gestartet, wenn sich zwei unterschiedliche Ordner mit Frames im zugehörigen Ordner befinden. Somit soll gewährleistet sein, dass die Vorverarbeitung mit dem Video fertig ist, bevor die Nachverarbeitung mit dem Prozess beginnt. Das Endprodukt der Nachbearbeitung ist ein Feature Vektor. Dies ist eine Tabelle mit je einem Eintrag pro Verkehrsteilnehmer, welche mithilfe eines Tabellenkalkulationsprogramm geöffnet und bearbeitet werden kann. Dabei werden möglichst viele Indikatoren pro Verkehrsteilnehmer aufgenommen und abgespeichert. Je mehr Features pro Fahrzeug gefunden werden können, desto besser kann dieses später wiedererkannt werden und die eigentliche Verkehrsverfolgung durchgeführt werden. Nachfolgende Tabelle (\tref{tFeatureVektor}) zeigt ein Beispiel eines Feature Vektors.
 
@@ -84,19 +85,17 @@ In nachfolgender Abbildung (\fref{bMotionDetection}) ist ein von rechts nach lin
 
 \begin{figure}[H]
 \centering
-	\subfigure[Blob Frame 1]{\includegraphics[width=0.48\textwidth]{Software/Blob1.jpg}}\quad
-   \subfigure[Bild Frame 1]{\includegraphics[width=0.48\textwidth]{Software/Detection1.jpg}}\\
-   \subfigure[Blob Frame 2]{\includegraphics[width=0.48\textwidth]{Software/Blob2.jpg}}\quad
-   \subfigure[Bild Frame 2]{\includegraphics[width=0.48\textwidth]{Software/Detection2.jpg}}\\
-   \subfigure[Blob Frame 3]{\includegraphics[width=0.48\textwidth]{Software/Blob3.jpg}}\quad
-   \subfigure[Blob Frame 3]{\includegraphics[width=0.48\textwidth]{Software/Detection3.jpg}}
+	\subfigure[Blob Frame 1]{\includegraphics[width=0.43\textwidth]{Software/Blob1.jpg}}\quad
+   \subfigure[Bild Frame 1]{\includegraphics[width=0.43\textwidth]{Software/Detection1.jpg}}\\
+   \subfigure[Blob Frame 2]{\includegraphics[width=0.43\textwidth]{Software/Blob2.jpg}}\quad
+   \subfigure[Bild Frame 2]{\includegraphics[width=0.43\textwidth]{Software/Detection2.jpg}}\\
+   \subfigure[Blob Frame 3]{\includegraphics[width=0.43\textwidth]{Software/Blob3.jpg}}\quad
+   \subfigure[Blob Frame 3]{\includegraphics[width=0.43\textwidth]{Software/Detection3.jpg}}
 \caption{Vehicle Tracking mithilfe von Blobs.}
 \label{bMotionDetection}
 \end{figure}
 
-Die drei vorher erwähnten Bilder werden in den entsprechenden Ordnern im Speicher abgelegt und alle relevanten Informationen an den Filehandler übergeben. Dieser öffnet die Datei des Feature Vektors und schreibt alle Informationen inklusive berechnetem Zeitstempel in eine neue Zeile. \\\\
-Nach diesem Vorgang ist der Verkehrsteilnehmer erfolgreich aufgenommen und abgeschlossen. Der nächste Teilnehmer kann nun ermittelt werden.\\\\
-Wenn sich keine Bilder mehr im Frames-Ordner befinden, beginnt die letzte Aufgabe dieses Programms. Der bereits bearbeitete Ordner wird gelöscht, da auch dieser für die weitere Auswertung nicht mehr benötigt wird. Der Nachbearbeitung wurde fix der dritte Prozessorkern zugeteilt. Bei hohem Verkehrsaufkommen benötigt diese auch die vollen 100\% dieses Kerns.\\\\
+Die drei vorher erwähnten Bilder werden in den entsprechenden Ordnern im Speicher abgelegt und alle relevanten Informationen an den Filehandler übergeben. Dieser öffnet die Datei des Feature Vektors und schreibt alle Informationen inklusive berechnetem Zeitstempel in eine neue Zeile. Nach diesem Vorgang ist der Verkehrsteilnehmer erfolgreich aufgenommen und abgeschlossen. Der nächste Teilnehmer kann nun ermittelt werden. Wenn sich keine Bilder mehr im Frames-Ordner befinden, beginnt die letzte Aufgabe dieses Programms. Der bereits bearbeitete Ordner wird gelöscht, da auch dieser für die weitere Auswertung nicht mehr benötigt wird. Der Nachbearbeitung wurde fix der dritte Prozessorkern zugeteilt. Bei hohem Verkehrsaufkommen benötigt diese auch die vollen 100\% dieses Kerns.\\\\
 Diese Software basiert auf dem Grundgerüst von C. Dahms "'OpenCV\_3\_Car\_Counting\_Cpp"'-Projekt \cite{OpenCVCC} und wurde an die Aufgaben von "'Fast and Curious"' angepasst, verändert und erweitert.\\\\
 Der oben beschriebene Algorithmus ist auf nachfolgender Abbildung (\fref{bFlussNach}) aufgezeigt.
 
@@ -113,6 +112,8 @@ Die Steuerung und Überwachung ist so konzipiert, dass sie ständig eine Schleif
 Als nächstes wird die Anzahl der Videos im dazugehörigen Ordner kontrolliert und anschliessend auch hier der Prozess zur Vorverarbeitung analysiert. Wenn die Vorverarbeitung nicht läuft, muss diese neu gestartet werden. Dazu wird jedoch der Pfad zum Video benötigt, welches als nächstes bearbeitet werden muss. Aus diesem Grund muss es möglich sein den Pfad anhand des Erstellungsdatums der Videos herauszulesen. Danach kann die Vorverarbeitung mit dem dazugehörigen Pfad des Videos gestartet werden.\\\\
 Nach dem gleichen Konzept geht es auch beim dritten Prozess, der Nachbearbeitung, weiter. Der einzige Unterschied zwischen dem zweiten und dritten Prozess besteht darin, dass hierfür zum Starten der Pfad zum Ordner mit den Frames benötigt wird.\\\\
 Da nebenbei noch ein Webserver läuft, der Informationen über das System bereitstellt, hat die Steuerung und Überwachung noch kleinere Aufgaben. Dies bedeutet, auf Eingaben der Website zu reagieren und Ordner zu erstellen oder zu verschieben, wenn dies vom Benutzer gewünscht wird. Zudem ist eine Temperaturüberwachung eingebaut. Einmal pro Minute wird die Kerntemperatur ausgelesen und in ein File geschrieben. Diesem Prozess ist der vierte Prozessorkern zugeteilt. Da die Auslastung des Scripts jedoch nicht sonderlich hoch ist, teilt sich dieser Prozess den Kern mit der Vorverarbeitung. \cite{Bash}\\\\
+
+\newpage
 Die Software zur Steuerung und Überwachung des Gerätes ist im unten dargestellten Bild (\fref{bFlussSuU}) visualisiert.
 
 \begin{figure}[H]
