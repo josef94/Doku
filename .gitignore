@@ -40,7 +40,6 @@ Thumbs.db
 #########################
 *.aux
 *.toc
-*.pdf
 *.aux
 *.glo
 *.idx
